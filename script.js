@@ -4,6 +4,24 @@ let i = 0;
 let n = 10;
 let j = 0;
 let promedio = 0;
+const bod = document.getElementById("boddy");
+bod.innerHTML = `
+    <div class="cent"><span class="titulo"> Numeros <span id="iteraction">0</span>/10</span>
+    </div>
+    <div class="container">
+        <div class="range-slider">
+            <span id="rs-bullet" class="rs-label">0 </span>
+            <input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="2000">
+        </div>
+        <div id="promedio" class="box-minmax">
+            <span>0</span><span>2000</span>
+            <div class="actualnumber" id="output"> </div>
+        </div>
+        <button class="savebutton" id="saveButton">SAVE</button>
+        <button class="rest" id="reset">reset</button>
+    </div>
+    <div id="results"></div>
+`;
 const itarains = document.getElementById("iteraction");
 const rangeSlider = document.getElementById("rs-range-line");
 const rangeBullet = document.getElementById("rs-bullet");
@@ -15,23 +33,6 @@ function clerdata() {
     alert("Reiniciando variables...");
     location.reload();
 }
-// const bod = document.getElementById("boddy") as HTMLBodyElement;
-// bod.innerHTML= `
-//     <span > lleva <span class="iteraction">0 </span> numeros </span>
-//    <div class="container">
-//         <div class="range-slider">
-//           <span id="rs-bullet" class="rs-label">0</span>
-//           <input id="rs-range-line" class="rs-range" type="range" value="0" min="0" max="2000">
-//         </div>
-//         <div class="box-minmax">
-//           <span>0</span><span>2000</span>
-//         </div>
-//         <button id="saveButton">SAVE</button>
-//         <div id="output"></div>
-//     </div>
-//       <div id="results"></div>
-// `
-// Obtener los elementos del DOM
 // Función para actualizar el valor del slider
 function showSliderValue() {
     if (rangeSlider && rangeBullet) {
@@ -40,7 +41,6 @@ function showSliderValue() {
         rangeBullet.style.left = (bulletPosition * 578) + "px"; // Ajusta la posición
     }
 }
-// Función para mostrar el valor seleccionado al hacer clic en el botón
 function displaySelectedValue() {
     if (i != n) {
         if (output) {
@@ -55,21 +55,22 @@ function displaySelectedValue() {
                 alert(`Solo se permiten ${n} números`);
             }
             let resultContent = '';
-            // Mostrar los valores una vez que se haya alcanzado el límite
             if (i === n) {
-                // Variable para almacenar todos los valores
                 for (j = 0; j < n; j++) {
                     promedio += Number(mylist[j]);
                     let numero = mylist[j];
                 }
+                resultContent += `La suma es ${promedio}<br>`;
                 resultContent += `El promedio es ${promedio / 10}<br>`;
+                console.log(`La suma es ${promedio}`);
+                console.log(`El promedio es ${promedio / 10}`);
                 showResult.innerHTML = resultContent;
             }
             let newlist = mylist.sort();
         }
     }
     else {
-        alert("numero maximo alcanzado solo se pueden 10 numeros");
+        alert(`Solo se permiten ${n} números`);
     }
 }
 // Añadir los event listeners
